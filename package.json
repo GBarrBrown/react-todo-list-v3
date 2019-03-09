@@ -1,0 +1,8 @@
+{
+  "name": "react-todo-list-v3",
+  "version": "1.0.0",
+  "description": "a react js todo list built from the ground up",
+  "main": "index.js",
+  "author": "gbarrbrown <gbb7899@gmail.com>",
+  "license": "MIT"
+}
