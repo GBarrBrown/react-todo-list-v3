@@ -17,6 +17,8 @@
     "express": "^4.16.4",
     "knex": "^0.16.3",
     "node-sass": "^4.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "sass-loader": "^7.1.0",
     "sqlite3": "^4.0.6",
     "style-loader": "^0.23.1",
