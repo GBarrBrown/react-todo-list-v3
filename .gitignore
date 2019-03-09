@@ -1,2 +1,8 @@
 # Node Modules
 node_modules
+
+# Bundle
+public/bundle.*
+
+# Database
+*.sqlite3
