@@ -1,8 +1,13 @@
 import React from 'react'
 
+import Todos from '../containers/Todos'
+
 const App = (props) => {
     return (
-        <h1>Todos List!</h1>
+        <div>
+            <h1>Todos List!</h1>
+            <Todos />
+        </div>
     )
 }
 
