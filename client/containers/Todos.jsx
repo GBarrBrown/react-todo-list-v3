@@ -21,13 +21,23 @@ class Todos extends React.Component {
                 <div className="uncompleted">
                     <h3>uncompleted</h3>
                     {this.state.todos.map((todo) => {
-                        return (todo.completed == false ? <p>{todo.title}</p> : null)
+                        return (todo.completed == false
+                            ? <div >
+                                <input type="checkbox" onClick={() => console.log('mark completed')}/>
+                                <span>{todo.title}</span>
+                            </div>
+                            : null)
                     })}
                 </div>
                 <div className="completed">
                     <h3>completed</h3>
                     {this.state.todos.map((todo) => {
-                            return (todo.completed == true ? <p>{todo.title}</p> : null)
+                            return (todo.completed == true
+                                ? <div>
+                                    <input type="checkbox" onClick={() => console.log('mark uncompleted')} checked/>
+                                    <span>{todo.title}</span>
+                                </div>
+                                : null)
                         })}
                 </div>
             </div>
