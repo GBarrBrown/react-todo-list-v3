@@ -5,3 +5,19 @@ html {
     color: #313639;
     font-family: 'Arvo', serif;
 }
+
+.todo-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.uncompleted{
+    width: 50%
+
+}
+
+.completed{
+    width: 50%
+}
