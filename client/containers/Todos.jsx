@@ -17,7 +17,20 @@ class Todos extends React.Component {
 
     render() {
         return (
-            <div>list</div>
+            <div className="todo-container">
+                <div className="uncompleted">
+                    <h3>uncompleted</h3>
+                    {this.state.todos.map((todo) => {
+                        return (todo.completed == false ? <p>{todo.title}</p> : null)
+                    })}
+                </div>
+                <div className="completed">
+                    <h3>completed</h3>
+                    {this.state.todos.map((todo) => {
+                            return (todo.completed == true ? <p>{todo.title}</p> : null)
+                        })}
+                </div>
+            </div>
         )
     }
 }
