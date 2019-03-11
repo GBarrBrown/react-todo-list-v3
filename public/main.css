@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
 html {
     background-color: #fafbfc;
-    color: #313639
+    color: #313639;
+    font-family: 'Arvo', serif;
 }
