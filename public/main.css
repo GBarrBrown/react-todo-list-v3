@@ -6,6 +6,26 @@ html {
     font-family: 'Arvo', serif;
 }
 
+#add-button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#add-text {
+    color: #c0c0c0;
+}
+
+.add-todo-container {
+    background-color: #fff;
+    padding: 10px;
+    max-width: 300px;
+    border-radius: 2px; 
+}
+
+.new-title {
+    display: inline;
+}
+
 .todo-container {
     width: 100vw;
     display: flex;

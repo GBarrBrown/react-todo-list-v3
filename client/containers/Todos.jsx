@@ -1,12 +1,14 @@
 import React from 'react'
 
 import { getTodos, toggleCompleted} from '../api/todos'
+import { AST_False } from 'terser';
 
 class Todos extends React.Component {
     constructor() {
         super()
         this.state = {
-            todos: []
+            todos: [],
+            addTodo: false
         }
         this.updateCheckbox = this.updateCheckbox.bind(this)
     }
@@ -26,28 +28,43 @@ class Todos extends React.Component {
 
     render() {
         return (
-            <div className="todo-container">
-                <div className="uncompleted">
-                    <h3>uncompleted</h3>
-                    {this.state.todos.map((todo) => {
-                        return (todo.completed == false
-                            ? <div >
-                                <input type="checkbox" onClick={(e,) => this.updateCheckbox(e, todo.id)}/>
-                                <span>{todo.title}</span>
-                            </div>
-                            : null)
-                    })}
+            <div>
+                <h1>Todo List!</h1>
+                <button id="add-button" onClick={() => {this.setState({addTodo: !this.state.addTodo})}}><h1 id="add-text">+ ADD</h1></button>
+                {this.state.addTodo
+                ? <div className="add-todo-container">
+                    <form onSubmit={(event) => event.preventDefault()}>
+                        <h4 className="add-title">Todo Title:</h4>
+                        <input className="add-title-input" required/>
+                        <input type="submit" />
+                    </form>
                 </div>
-                <div className="completed">
-                    <h3>completed</h3>
-                    {this.state.todos.map((todo) => {
-                            return (todo.completed == true
-                                ? <div>
-                                    <input type="checkbox" onClick={(e) => this.updateCheckbox(e, todo.id)} checked/>
+                : null
+                }
+                
+                <div className="todo-container">
+                    <div className="uncompleted">
+                        <h3>uncompleted</h3>
+                        {this.state.todos.map((todo) => {
+                            return (todo.completed == false
+                                ? <div >
+                                    <input type="checkbox" onClick={(e,) => this.updateCheckbox(e, todo.id)}/>
                                     <span>{todo.title}</span>
                                 </div>
                                 : null)
                         })}
+                    </div>
+                    <div className="completed">
+                        <h3>completed</h3>
+                        {this.state.todos.map((todo) => {
+                                return (todo.completed == true
+                                    ? <div>
+                                        <input type="checkbox" onClick={(e) => this.updateCheckbox(e, todo.id)} checked/>
+                                        <span>{todo.title}</span>
+                                    </div>
+                                    : null)
+                            })}
+                    </div>
                 </div>
             </div>
         )
