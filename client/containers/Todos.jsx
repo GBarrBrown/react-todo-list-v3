@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getTodos } from '../api/todos'
+import { getTodos, toggleCompleted} from '../api/todos'
 
 class Todos extends React.Component {
     constructor() {
@@ -8,6 +8,15 @@ class Todos extends React.Component {
         this.state = {
             todos: []
         }
+        this.updateCheckbox = this.updateCheckbox.bind(this)
+    }
+
+    updateCheckbox(e, todo_id) {
+        e.preventDefault()
+        toggleCompleted(todo_id).then(() => {
+            getTodos()
+            .then(res => this.setState({todos: res}))
+        })
     }
     
     componentDidMount(){
@@ -23,7 +32,7 @@ class Todos extends React.Component {
                     {this.state.todos.map((todo) => {
                         return (todo.completed == false
                             ? <div >
-                                <input type="checkbox" onClick={() => console.log('mark completed')}/>
+                                <input type="checkbox" onClick={(e,) => this.updateCheckbox(e, todo.id)}/>
                                 <span>{todo.title}</span>
                             </div>
                             : null)
@@ -34,7 +43,7 @@ class Todos extends React.Component {
                     {this.state.todos.map((todo) => {
                             return (todo.completed == true
                                 ? <div>
-                                    <input type="checkbox" onClick={() => console.log('mark uncompleted')} checked/>
+                                    <input type="checkbox" onClick={(e) => this.updateCheckbox(e, todo.id)} checked/>
                                     <span>{todo.title}</span>
                                 </div>
                                 : null)
