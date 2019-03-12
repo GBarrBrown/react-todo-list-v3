@@ -15,6 +15,19 @@ html {
     color: #c0c0c0;
 }
 
+#del-button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#del-text {
+    color: #c0c0c0;
+}
+
+#del-text-active {
+    color: #d26e6e;  
+}
+
 .add-todo-container {
     background-color: #fff;
     padding: 10px;
