@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getTodos, toggleCompleted} from '../api/todos'
+import { getTodos, toggleCompleted, addTodo} from '../api/todos'
 
 class Todos extends React.Component {
     constructor() {
@@ -12,6 +12,7 @@ class Todos extends React.Component {
         }
         this.updateCheckbox = this.updateCheckbox.bind(this)
         this.update = this.update.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
     updateCheckbox(e, todo_id) {
@@ -24,6 +25,16 @@ class Todos extends React.Component {
 
     update(e) {
         this.setState({newTodoStr: e.target.value})
+    }
+
+    onSubmit(e) {
+        e.preventDefault()
+        const newTodo = this.state.newTodoStr
+        addTodo(newTodo).then(() => {
+            getTodos()
+            .then(res => this.setState({todos: res}))
+        })
+
     }
     
     componentDidMount(){
@@ -38,7 +49,7 @@ class Todos extends React.Component {
                 <button id="add-button" onClick={() => {this.setState({addTodo: !this.state.addTodo})}}><h1 id="add-text">+ ADD</h1></button>
                 {this.state.addTodo
                 ? <div className="add-todo-container">
-                    <form onSubmit={(event) => event.preventDefault()}>
+                    <form onSubmit={this.onSubmit}>
                         <h4 className="add-title">Todo Title:</h4>
                         <input onChange={this.update} className="add-title-input" required/>
                         <input type="submit" />
