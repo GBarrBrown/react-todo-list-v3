@@ -10,6 +10,6 @@
 
 - [x] As a user I want - to be able to add a new todo
 
-- [ ] As a user I want - to be able to delete a todo
+- [x] As a user I want - to be able to delete a todo
 
 - [ ] As a user I want - to be able to delete all completed todos
