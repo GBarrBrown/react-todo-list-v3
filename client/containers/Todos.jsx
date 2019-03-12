@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { getTodos, toggleCompleted} from '../api/todos'
-import { AST_False } from 'terser';
 
 class Todos extends React.Component {
     constructor() {
