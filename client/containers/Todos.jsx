@@ -49,8 +49,12 @@ class Todos extends React.Component {
         return (
             <div>
                 <h1>Todo List!</h1>
-                <button id="add-button" onClick={() => {this.setState({addTodo: !this.state.addTodo})}}><h1 id="add-text">+ ADD</h1></button>
-                <button id="del-button" onClick={() => {this.setState({delModeOn: !this.state.delModeOn})}}><h1 id={this.state.delModeOn ? "del-text-active" : "del-text"}>- DEL</h1></button>
+                <button id="add-button" onClick={() => {this.setState({addTodo: !this.state.addTodo})}}>
+                    <h1 id={this.state.addTodo ? "add-text-active" : "add-text"}>+ ADD</h1>
+                </button>
+                <button id="del-button" onClick={() => {this.setState({delModeOn: !this.state.delModeOn})}}>
+                    <h1 id={this.state.delModeOn ? "del-text-active" : "del-text"}>- DEL</h1>
+                </button>
                 {this.state.addTodo
                 ? <div className="add-todo-container">
                     <form onSubmit={this.onSubmit}>
@@ -69,7 +73,11 @@ class Todos extends React.Component {
                             return (todo.completed == false
                                 ? <div >
                                     <input type="checkbox" onClick={(e,) => this.updateCheckbox(e, todo.id)}/>
-                                    <span>{todo.title}</span>
+                                    {this.state.delModeOn
+                                    ? <a id={`todo_${todo.id}`} onClick={(e) => console.log(`deleting ${e.target.id}`)}>{todo.title}</a>
+                                    : <span>{todo.title}</span>
+                                    }
+                                    
                                 </div>
                                 : null)
                         })}

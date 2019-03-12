@@ -15,6 +15,10 @@ html {
     color: #c0c0c0;
 }
 
+#add-text-active {
+    color: #7ec270
+}
+
 #del-button {
     background-color: transparent;
     border-color: transparent;
