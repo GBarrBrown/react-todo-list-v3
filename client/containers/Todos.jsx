@@ -29,12 +29,14 @@ class Todos extends React.Component {
 
     onSubmit(e) {
         e.preventDefault()
-        const newTodo = this.state.newTodoStr
-        addTodo(newTodo).then(() => {
+        const new_todo = this.state.newTodoStr
+        addTodo(new_todo).then(() => {
             getTodos()
-            .then(res => this.setState({todos: res}))
+            .then(res => this.setState(
+                {todos: res,
+                newTodoStr: ''})
+            )
         })
-
     }
     
     componentDidMount(){
@@ -51,7 +53,7 @@ class Todos extends React.Component {
                 ? <div className="add-todo-container">
                     <form onSubmit={this.onSubmit}>
                         <h4 className="add-title">Todo Title:</h4>
-                        <input onChange={this.update} className="add-title-input" required/>
+                        <input onChange={this.update} className="add-title-input" value={this.state.newTodoStr} required/>
                         <input type="submit" />
                     </form>
                 </div>

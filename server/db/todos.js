@@ -2,7 +2,8 @@ const connection = require('./connection')
 
 module.exports = {
     getTodos,
-    toggleCompleted
+    toggleCompleted,
+    addTodo
 }
 
 function getTodos(testDb) {
@@ -19,4 +20,10 @@ function toggleCompleted(todo_id, testDb) {
         let newState = (res.completed == 0 ? 1 : 0)
         return db('todos').where('id', todo_id).update({completed: newState})
     })
+}
+
+function addTodo(new_todo, testDb) {
+    const db = testDb || connection
+
+    return db('todos').insert({title: new_todo})
 }

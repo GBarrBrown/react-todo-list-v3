@@ -14,3 +14,11 @@ export function toggleCompleted(todo_id) {
         console.log('ERROR!', err)
     })
 }
+
+export function addTodo(new_todo) {
+    return request.get(`/api/v1/todos/add_todo/${new_todo}`)
+    .then(res => res.body)
+    .catch(err => {
+        console.log('ERROR!', err)
+    })
+}
