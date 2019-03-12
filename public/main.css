@@ -32,6 +32,43 @@ html {
     color: #d26e6e;  
 }
 
+/* -- on hover animated strikethrough -- */
+
+.del-todo {
+    text-decoration: none;
+    position: relative;
+}
+.del-todo::before, .del-todo::after {
+    content: '';
+    background: #313639;
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    width: 0;
+}
+
+.del-todo::before {
+    left: 0;
+}
+
+.del-todo::after {
+    right: 0;
+    transition: width 500ms ease;
+}
+
+.del-todo:hover::before {
+    width: 100%;
+    transition: width 500ms ease;
+}
+
+.del-todo:hover::after {
+    width: 100%;
+    background: transparent;
+    transition: 0;
+}
+
+/* -- --  */
+
 .add-todo-container {
     background-color: #fff;
     padding: 10px;
