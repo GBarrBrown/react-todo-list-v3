@@ -8,7 +8,7 @@
 
 - [x] As a user I want - to be able to change a todos uncompleted/ completed status
 
-- [ ] As a user I want - to be able to add a new todo
+- [x] As a user I want - to be able to add a new todo
 
 - [ ] As a user I want - to be able to delete a todo
 
