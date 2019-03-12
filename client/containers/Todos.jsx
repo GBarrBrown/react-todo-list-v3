@@ -8,7 +8,8 @@ class Todos extends React.Component {
         this.state = {
             todos: [],
             addTodo: false,
-            newTodoStr: ''
+            newTodoStr: '',
+            delModeOn: false
         }
         this.updateCheckbox = this.updateCheckbox.bind(this)
         this.update = this.update.bind(this)
@@ -49,6 +50,7 @@ class Todos extends React.Component {
             <div>
                 <h1>Todo List!</h1>
                 <button id="add-button" onClick={() => {this.setState({addTodo: !this.state.addTodo})}}><h1 id="add-text">+ ADD</h1></button>
+                <button id="del-button" onClick={() => {this.setState({delModeOn: !this.state.delModeOn})}}><h1 id="del-text">- DEL</h1></button>
                 {this.state.addTodo
                 ? <div className="add-todo-container">
                     <form onSubmit={this.onSubmit}>
