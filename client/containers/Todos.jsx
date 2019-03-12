@@ -7,9 +7,11 @@ class Todos extends React.Component {
         super()
         this.state = {
             todos: [],
-            addTodo: false
+            addTodo: false,
+            newTodoStr: ''
         }
         this.updateCheckbox = this.updateCheckbox.bind(this)
+        this.update = this.update.bind(this)
     }
 
     updateCheckbox(e, todo_id) {
@@ -18,6 +20,10 @@ class Todos extends React.Component {
             getTodos()
             .then(res => this.setState({todos: res}))
         })
+    }
+
+    update(e) {
+        this.setState({newTodoStr: e.target.value})
     }
     
     componentDidMount(){
@@ -34,7 +40,7 @@ class Todos extends React.Component {
                 ? <div className="add-todo-container">
                     <form onSubmit={(event) => event.preventDefault()}>
                         <h4 className="add-title">Todo Title:</h4>
-                        <input className="add-title-input" required/>
+                        <input onChange={this.update} className="add-title-input" required/>
                         <input type="submit" />
                     </form>
                 </div>
