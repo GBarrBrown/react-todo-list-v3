@@ -85,7 +85,6 @@ class Todos extends React.Component {
                                     ? <a className="del-todo" id={`todo_${todo.id}`} onClick={(e) => this.delTodo(e.target.id.substring(5))}>{todo.title}</a>
                                     : <span>{todo.title}</span>
                                     }
-                                    
                                 </div>
                                 : null)
                         })}
@@ -96,7 +95,10 @@ class Todos extends React.Component {
                                 return (todo.completed == true
                                     ? <div>
                                         <input type="checkbox" onClick={(e) => this.updateCheckbox(e, todo.id)} checked/>
-                                        <span>{todo.title}</span>
+                                        {this.state.delModeOn
+                                        ? <a className="del-todo" id={`todo_${todo.id}`} onClick={(e) => this.delTodo(e.target.id.substring(5))}>{todo.title}</a>
+                                        : <span>{todo.title}</span>
+                                        }
                                     </div>
                                     : null)
                             })}
