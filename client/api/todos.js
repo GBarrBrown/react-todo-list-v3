@@ -22,3 +22,11 @@ export function addTodo(new_todo) {
         console.log('ERROR!', err)
     })
 }
+
+export function delTodo(todo_id) {
+    return request.get(`/api/v1/todos/del_todo/${todo_id}`)
+    .then(res => res.body)
+    .catch(err => {
+        console.log('ERROR!', err)
+    })
+}

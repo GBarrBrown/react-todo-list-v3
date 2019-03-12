@@ -3,7 +3,8 @@ const connection = require('./connection')
 module.exports = {
     getTodos,
     toggleCompleted,
-    addTodo
+    addTodo,
+    delTodo
 }
 
 function getTodos(testDb) {
@@ -26,4 +27,10 @@ function addTodo(new_todo, testDb) {
     const db = testDb || connection
 
     return db('todos').insert({title: new_todo})
+}
+
+function delTodo(todo_id, testDb) {
+    const db = testDb || connection
+
+    return db('todos').where({id: todo_id}).del()
 }

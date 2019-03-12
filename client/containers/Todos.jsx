@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getTodos, toggleCompleted, addTodo} from '../api/todos'
+import { getTodos, toggleCompleted, addTodo, delTodo } from '../api/todos'
 
 class Todos extends React.Component {
     constructor() {
@@ -14,6 +14,7 @@ class Todos extends React.Component {
         this.updateCheckbox = this.updateCheckbox.bind(this)
         this.update = this.update.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.delTodo = this.delTodo.bind(this)
     }
 
     updateCheckbox(e, todo_id) {
@@ -37,6 +38,13 @@ class Todos extends React.Component {
                 {todos: res,
                 newTodoStr: ''})
             )
+        })
+    }
+
+    delTodo(todo_id) {
+        delTodo(todo_id).then(() => {
+            getTodos()
+            .then(res => this.setState({todos: res}))
         })
     }
     
@@ -74,7 +82,7 @@ class Todos extends React.Component {
                                 ? <div >
                                     <input type="checkbox" onClick={(e,) => this.updateCheckbox(e, todo.id)}/>
                                     {this.state.delModeOn
-                                    ? <a id={`todo_${todo.id}`} onClick={(e) => console.log(`deleting ${e.target.id}`)}>{todo.title}</a>
+                                    ? <a className="del-todo" id={`todo_${todo.id}`} onClick={(e) => this.delTodo(e.target.id.substring(5))}>{todo.title}</a>
                                     : <span>{todo.title}</span>
                                     }
                                     
