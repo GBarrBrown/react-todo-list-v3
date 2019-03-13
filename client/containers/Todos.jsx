@@ -15,6 +15,7 @@ class Todos extends React.Component {
         this.update = this.update.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.delTodo = this.delTodo.bind(this)
+        this.delAllCompleted = this.delAllCompleted.bind(this)
     }
 
     updateCheckbox(e, todo_id) {
@@ -46,6 +47,14 @@ class Todos extends React.Component {
             getTodos()
             .then(res => this.setState({todos: res}))
         })
+    }
+
+    delAllCompleted() {
+        this.state.todos.map((todo) => {
+            todo.completed ? delTodo(todo.id) : null
+        })
+        getTodos()
+        .then(res => this.setState({todos: res}))
     }
     
     componentDidMount(){
@@ -90,7 +99,11 @@ class Todos extends React.Component {
                         })}
                     </div>
                     <div className="completed">
-                        <h3>completed</h3>
+                        {this.state.delModeOn
+                            ? <h3>completed <a className="del-all" onClick={() => this.delAllCompleted() }>[delete all]</a></h3>
+                            : <h3>completed</h3>
+                        }
+                        
                         {this.state.todos.map((todo) => {
                                 return (todo.completed == true
                                     ? <div>
