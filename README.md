@@ -14,7 +14,7 @@
 
 - [x] As a user I want - to be able to delete all completed todos
 
-##### Stretch
+#### Stretch
 
 - [ ] As a user I want - to be able to add descriptions with my todos
 
