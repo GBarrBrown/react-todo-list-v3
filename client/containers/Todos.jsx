@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getTodos, toggleCompleted, addTodo, delTodo } from '../api/todos'
+import { getTodos, toggleCompleted, addTodo, delTodo as dbDelTodo } from '../api/todos'
 
 class Todos extends React.Component {
     constructor() {
@@ -43,18 +43,20 @@ class Todos extends React.Component {
     }
 
     delTodo(todo_id) {
-        delTodo(todo_id).then(() => {
+        dbDelTodo(todo_id).then(() => {
             getTodos()
             .then(res => this.setState({todos: res}))
         })
     }
 
     delAllCompleted() {
+        let undeleted = []
         this.state.todos.map((todo) => {
-            todo.completed ? delTodo(todo.id) : null
+            todo.completed ? dbDelTodo(todo.id) : undeleted.push(todo)
         })
-        getTodos()
-        .then(res => this.setState({todos: res}))
+        // getTodos()
+        // .then(res => this.setState({todos: res}))
+        this.setState({todos: undeleted})
     }
     
     componentDidMount(){
